@@ -1,0 +1,144 @@
+#container {
+    width: 90%;
+    padding-top: 50px;
+    max-width: 960px;
+    margin: auto;
+    background-color: rgba(245, 245, 245, 0.8);
+    border-radius: 15px;
+}
+
+#scrollMessage {
+    display: none;
+    font-style: italic;
+}
+
+h2 {
+    font-size: 2.4em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+input[type="text"] {
+    font-size: 1.2em;
+    padding: 8px 0;
+    padding-left: 1%;
+    width: 80%;
+    margin: 8px 0;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+//Byter färg på textrutan när den är i fokus
+input[type="text"]:focus {
+    border-color: #d87229;
+    box-shadow: 0 0 5px rgba(216, 114, 41, 0.5);
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+
+    td,
+    th,
+    tr {
+        padding: 12px; 
+        transition: background-color 0.3s;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dcdcdc;
+    }
+
+    // Byt bakgrundsfärg för hela raden vid hover
+    tr:hover {
+        background-color: #ff8000;
+    }
+
+    // Byt bakgrundsfärg för enskild cell vid hover
+    td:hover {
+        background-color: #ffac59; 
+    }
+
+    tr a {
+        color: black;
+        transition: color 0.3s; // Lade till en smidig färgövergång vid hover
+    }
+
+    tr a:hover {
+        cursor: pointer;
+        color: purple;
+    }
+
+    th {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        text-align: left;
+        background-color: tomato;
+        color: white;
+        text-decoration: underline;
+    }
+
+    th:hover {
+        cursor: pointer;
+        background-color: #a84e17;
+        color: white;
+    }
+}
+
+//Media query för att göra layouten responsiv
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        min-width: 80px; //minsta bredd för varje cell
+    }
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 2em;
+    }
+
+    table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    td,
+    th,
+    tr {
+        padding: 8px; 
+        min-width: 50px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 450px) {
+    h2 {
+        font-size: 1.6em;
+    }
+
+    table {
+        width: 100%;
+        overflow-x: auto; // Lägg till horisontell scrollning vid behov
+        display: block;
+        white-space: nowrap; // Förhindra att cellerna bryts på flera rader
+    }
+
+    #scrollMessage {
+        display: block;
+    }
+}

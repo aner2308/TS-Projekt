@@ -20,6 +20,8 @@ export class CoursesComponent implements OnInit {
   filterValue: string = "";
   selectedSubject: string = "";
   sortingBy: string = "";
+  totalCourses: number = 0;
+  displayedNumCourses: number = 0;
 
   constructor(private courseservice: CourseService, private courseStorageService: CourseStorageService) { }
 
@@ -28,18 +30,21 @@ export class CoursesComponent implements OnInit {
     this.courseservice.getCourses().subscribe(data => {
       this.courselist = data;
       this.filteredCourses = data;
+      this.totalCourses = data.length;
+      this.displayedNumCourses = data.length
       this.uniqueSubjects = [...new Set(data.map(course => course.subject))];
     })
   }
 
-   //Sorterar kurser med sökrutan och med select-rutan
-   applyFilter(): void {
+  //Sorterar kurser med sökrutan och med select-rutan
+  applyFilter(): void {
     this.filteredCourses = this.courselist.filter((course) =>
       //Visar bara kurser som innehåller inmatningen i sökrutan
       (course.courseCode.toLowerCase().includes(this.filterValue.toLowerCase()) || course.courseName.toLowerCase().includes(this.filterValue.toLowerCase())) &&
       //Om man valt ett ämne i select-rutan visas bara kurser i det ämnet
       (this.selectedSubject === "" || course.subject === this.selectedSubject)
     );
+    this.displayedNumCourses = this.filteredCourses.length;
   }
 
   filterBySubject(): void {
@@ -73,7 +78,7 @@ export class CoursesComponent implements OnInit {
       });
     }
   }
-  saveCourse(course:Course): void {
+  saveCourse(course: Course): void {
     this.courseStorageService.saveCourse(course);
   }
 }

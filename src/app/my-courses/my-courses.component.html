@@ -1,11 +1,12 @@
-<p>my-courses works!</p>
-
 <div id="container">
     <h2>Mina sparade kurser</h2>
 
     <!-- meddelande om inga sparade kurser -->
-    <p *ngIf="savedCourses.length === 0">Inga sparade kurser...</p>
+    @if(savedCourses.length === 0) {
+    <p>Inga sparade kurser...</p>
+    }
 
+    @if(savedCourses.length > 0) {
     <table id="savedCoursesTable">
         <tr>
             <th>Kurskod</th>
@@ -24,4 +25,5 @@
             <td><button (click)="removeCourse(course.courseCode)">Ta bort</button></td>
         </tr>
     </table>
+    }
 </div>

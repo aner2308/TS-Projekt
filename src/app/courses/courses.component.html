@@ -6,15 +6,18 @@
     <input type="text" id="filter" [(ngModel)]="filterValue" (input)="applyFilter()"
         placeholder="Sök efter kurskod/namn">
 
-    <!-- meddelande om inga kurser matchar sökning -->
-    @if(filteredCourses.length === 0) {
-    <p>Inga kurser hittades...</p>
-    }
-
     <select [(ngModel)]="selectedSubject" (change)="filterBySubject()">
         <option value="">Alla ämnen</option>
         <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
     </select>
+
+        <!-- Visar antal kurser -->
+        <p>Visar {{displayedNumCourses}} av {{totalCourses}} kurser</p>
+
+    <!-- meddelande om inga kurser matchar sökning -->
+    @if(filteredCourses.length === 0) {
+    <p>Inga kurser hittades...</p>
+    }
 
     <table id="courseTable">
         <tr>
@@ -22,7 +25,8 @@
             <th id="coursename" (click)="sortBy('courseName')">Kursnamn</th>
             <th id="points" (click)="sortBy('points')">HP</th>
             <th id="subject" (click)="sortBy('subject')">Ämne</th>
-            <th>Kursplan</th>
+            <th id="syllabus">Kursplan</th>
+            <th id="addBtn">Lägg till</th>
         </tr>
         <tr *ngFor="let course of filteredCourses">
             <td> {{course.courseCode}} </td>
