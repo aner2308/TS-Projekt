@@ -1,0 +1,29 @@
+<div id="container">
+    <h2>Alla kurser</h2>
+
+        <!-- Sökruta för kurser -->
+        <label for="filter">Filtrera kurser:</label>
+        <input type="text" id="filter" [(ngModel)]="filterValue" (input)="applyFilter()" placeholder="Sök efter kurskod/namn">
+    
+        <!-- meddelande om inga kurser matchar sökning -->
+        @if(filteredCourses.length === 0) {
+        <p>Inga kurser hittades...</p>
+        }
+
+    <table id="courseTable">
+        <tr>
+            <th id="courseCode" (click)="sortBy('courseCode')">Kurskod</th>
+            <th id="coursename" (click)="sortBy('courseName')">Kursnamn</th>
+            <th id="points" (click)="sortBy('points')">HP</th>
+            <th id="subject" (click)="sortBy('subject')">Ämne</th>
+            <th>Kursplan</th>
+        </tr>
+        <tr *ngFor="let course of filteredCourses">
+            <td> {{course.courseCode}} </td>
+            <td> {{course.courseName}} </td>
+            <td> {{course.points}} </td>
+            <td> {{course.subject}} </td>
+            <td> <a [href]="course.syllabus" target="_blank">Kursplan</a> </td>
+        </tr>
+    </table>
+</div>
