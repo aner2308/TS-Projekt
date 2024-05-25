@@ -1,1 +1,27 @@
 <p>my-courses works!</p>
+
+<div id="container">
+    <h2>Mina sparade kurser</h2>
+
+    <!-- meddelande om inga sparade kurser -->
+    <p *ngIf="savedCourses.length === 0">Inga sparade kurser...</p>
+
+    <table id="savedCoursesTable">
+        <tr>
+            <th>Kurskod</th>
+            <th>Kursnamn</th>
+            <th>HP</th>
+            <th>Ämne</th>
+            <th>Kursplan</th>
+            <th>Ta bort</th>
+        </tr>
+        <tr *ngFor="let course of savedCourses">
+            <td>{{ course.courseCode }}</td>
+            <td>{{ course.courseName }}</td>
+            <td>{{ course.points }}</td>
+            <td>{{ course.subject }}</td>
+            <td><a [href]="course.syllabus" target="_blank">Kursplan</a></td>
+            <td><button (click)="removeCourse(course.courseCode)">Ta bort</button></td>
+        </tr>
+    </table>
+</div>

@@ -3,6 +3,7 @@ import { Course } from '../model/course';
 import { CourseService } from '../services/course.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CourseStorageService } from '../services/course-storage.service';
 
 @Component({
   selector: 'app-courses',
@@ -20,7 +21,7 @@ export class CoursesComponent implements OnInit {
   selectedSubject: string = "";
   sortingBy: string = "";
 
-  constructor(private courseservice: CourseService) { }
+  constructor(private courseservice: CourseService, private courseStorageService: CourseStorageService) { }
 
   //Hämtar kurser vid inladdning av sidan
   ngOnInit() {
@@ -71,5 +72,8 @@ export class CoursesComponent implements OnInit {
         return 0;
       });
     }
+  }
+  saveCourse(course:Course): void {
+    this.courseStorageService.saveCourse(course);
   }
 }

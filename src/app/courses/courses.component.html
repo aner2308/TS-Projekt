@@ -30,6 +30,8 @@
             <td> {{course.points}} </td>
             <td> {{course.subject}} </td>
             <td> <a [href]="course.syllabus" target="_blank">Kursplan</a> </td>
+            <!-- Spara-knapp för att lägga till i sin kurslista -->
+            <td><button (click)="saveCourse(course)">Spara</button></td>
         </tr>
     </table>
 </div>
