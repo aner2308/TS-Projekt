@@ -28,5 +28,9 @@ export class MyCoursesComponent implements OnInit {
     this.courseStorageService.removeCourse(courseCode);
     this.loadSavedCourses();
   }
+
+  calculatePoints(): number {
+    return this.savedCourses.reduce((total, course) => total + course.points, 0);
+  }
 }
 

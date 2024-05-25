@@ -1,4 +1,5 @@
 <div id="container">
+    
     <h2>Mina sparade kurser</h2>
 
     <!-- meddelande om inga sparade kurser -->
@@ -26,4 +27,8 @@
         </tr>
     </table>
     }
+
+    <p *ngIf="savedCourses.length === 0">Du har inga sparade kurser...</p>
+    <p *ngIf="savedCourses.length > 0">Antal kurser: {{ savedCourses.length }}</p>
+    <p *ngIf="savedCourses.length > 0">Antal poäng: {{ calculatePoints() }}</p>
 </div>

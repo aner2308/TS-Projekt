@@ -31,7 +31,7 @@ export class CoursesComponent implements OnInit {
       this.courselist = data;
       this.filteredCourses = data;
       this.totalCourses = data.length;
-      this.displayedNumCourses = data.length
+      this.displayedNumCourses = data.length;
       this.uniqueSubjects = [...new Set(data.map(course => course.subject))];
     })
   }
