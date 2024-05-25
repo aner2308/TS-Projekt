@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Course } from '../model/course';
 import { CourseService } from '../services/course.service';
 import { CommonModule } from '@angular/common';
@@ -11,10 +11,13 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss'
 })
-export class CoursesComponent {
+
+export class CoursesComponent implements OnInit {
   courselist: Course[] = [];
   filteredCourses: Course[] = [];
+  uniqueSubjects: string[] = [];
   filterValue: string = "";
+  selectedSubject: string = "";
   sortingBy: string = "";
 
   constructor(private courseservice: CourseService) { }
@@ -24,15 +27,22 @@ export class CoursesComponent {
     this.courseservice.getCourses().subscribe(data => {
       this.courselist = data;
       this.filteredCourses = data;
+      this.uniqueSubjects = [...new Set(data.map(course => course.subject))];
     })
   }
 
-   //Jämför hämtade kursernas kursnamn/kurskod med texten i sökrutan
+   //Sorterar kurser med sökrutan och med select-rutan
    applyFilter(): void {
     this.filteredCourses = this.courselist.filter((course) =>
-      course.courseCode.toLowerCase().includes(this.filterValue.toLowerCase()) ||
-      course.courseName.toLowerCase().includes(this.filterValue.toLowerCase())
+      //Visar bara kurser som innehåller inmatningen i sökrutan
+      (course.courseCode.toLowerCase().includes(this.filterValue.toLowerCase()) || course.courseName.toLowerCase().includes(this.filterValue.toLowerCase())) &&
+      //Om man valt ett ämne i select-rutan visas bara kurser i det ämnet
+      (this.selectedSubject === "" || course.subject === this.selectedSubject)
     );
+  }
+
+  filterBySubject(): void {
+    this.applyFilter();
   }
 
   //Sorterar kurserna vid klick på rubrik. Ger sortingBy värdet av den klickade rubriken. 
