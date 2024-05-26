@@ -39,11 +39,11 @@ nav {
         width: 7em;
         height: 1em;
         padding: 10px 0;
-        background-image: linear-gradient(90deg, tomato, rgb(190, 124, 0), tomato);
+        background-image: linear-gradient(90deg, rgb(199, 63, 39), rgb(223, 145, 0), rgb(199, 63, 39));
         background-size: 200% 200%;
         border-radius: 0.3em;
         margin: 5px;
-        color: rgb(0, 0, 23);
+        color: white;
         transition: transform 0.2s, background-position 0.5s;
     
         &:hover {

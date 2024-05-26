@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
+  
+  apply() {
+    alert("Ansökningsperioden har tyvärr stängt för i år. Du kan ansöka för Vårterminen 2025 mellan 7/8- 12/10.")
+  }
 }
