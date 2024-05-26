@@ -11,13 +11,14 @@
         <option *ngFor="let subject of uniqueSubjects" [value]="subject">{{ subject }}</option>
     </select>
 
-        <!-- Visar antal kurser -->
-        <p>Visar {{displayedNumCourses}} av {{totalCourses}} kurser</p>
+    <!-- Visar antal kurser -->
+    <p>Visar {{displayedNumCourses}} av {{totalCourses}} kurser</p>
 
     <!-- meddelande om inga kurser matchar sökning -->
-    @if(filteredCourses.length === 0) {
-    <p>Inga kurser hittades...</p>
-    }
+    <p *ngIf="filteredCourses.length === 0">Inga kurser hittades...</p>
+
+    <!-- meddelande vid sidscrollning på små skärmar -->
+    <p id="scrollMessage">Scrolla i sidled för att se hela tabellen</p>
 
     <table id="courseTable">
         <tr>
@@ -29,13 +30,15 @@
             <th id="addBtn">Lägg till</th>
         </tr>
         <tr *ngFor="let course of filteredCourses">
-            <td> {{course.courseCode}} </td>
-            <td> {{course.courseName}} </td>
-            <td> {{course.points}} </td>
-            <td> {{course.subject}} </td>
-            <td> <a [href]="course.syllabus" target="_blank">Kursplan</a> </td>
+            <td>{{course.courseCode}}</td>
+            <td>{{course.courseName}}</td>
+            <td>{{course.points}}</td>
+            <td>{{course.subject}}</td>
+            <td><a [href]="course.syllabus" target="_blank">Kursplan</a></td>
             <!-- Spara-knapp för att lägga till i sin kurslista -->
             <td><button (click)="saveCourse(course)">Spara</button></td>
         </tr>
     </table>
+
+
 </div>
