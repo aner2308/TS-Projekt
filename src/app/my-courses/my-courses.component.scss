@@ -62,7 +62,6 @@ table {
         text-align: left;
         background-color: tomato;
         color: white;
-        text-decoration: underline;
         font-size: 1.6em;
         min-width: 70px;
     }
@@ -92,11 +91,6 @@ table {
         outline: none;
     }
 
-    th:hover {
-        cursor: pointer;
-        background-color: #a84e17;
-        color: white;
-    }
 }
 
 //Media query för att göra layouten responsiv
@@ -106,7 +100,6 @@ table {
         width: 100%;
         overflow-x: auto;
         display: block;
-        white-space: nowrap;
     }
 
     #scrollMessage {

@@ -40,7 +40,8 @@ export class CoursesComponent implements OnInit {
   applyFilter(): void {
     this.filteredCourses = this.courselist.filter((course) =>
       //Visar bara kurser som innehåller inmatningen i sökrutan
-      (course.courseCode.toLowerCase().includes(this.filterValue.toLowerCase()) || course.courseName.toLowerCase().includes(this.filterValue.toLowerCase())) &&
+      (course.courseCode.toLowerCase().includes(this.filterValue.toLowerCase()) || 
+      course.courseName.toLowerCase().includes(this.filterValue.toLowerCase())) &&
       //Om man valt ett ämne i select-rutan visas bara kurser i det ämnet
       (this.selectedSubject === "" || course.subject === this.selectedSubject)
     );
